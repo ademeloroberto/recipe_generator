@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html > 
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ULTIMATE RECIPE</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body >
+ <div class="login">
+ <img src="{{url_for('static', filename='picture.jpg')}}"
+ align="middle" height="250" width="370" />
+  <br>
+	<h1>Ultimate Recipe <br> Generator</h1>
+  <h6>Please enter your ingredients in the box below <br> only separated by spaces.</h6> 
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="Ingredients" placeholder="Ingredients" required="required" />
+ 
+        <button type="submit" class="btn btn-primary btn-block btn-large">Generate Recipe</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+   <br>
+   {% for ingredient in ingredients %}
+   <div> {{ ingredient }}  </div>
+   {% endfor %}
+
+   <br>
+   <br>
+   {{ prediction_text2 }}
+    <br>
+   {% for prep_mode in prep_modes %}
+   <div> {{ prep_mode }}  </div>
+   {% endfor %}
+   <br>
+   <br>
+
+ </div>
+
+
+</body>
+</html>
